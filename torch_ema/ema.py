@@ -40,26 +40,28 @@ class ExponentialMovingAverage:
         # if the model goes out of scope but the ExponentialMovingAverage
         # is kept, no references to the model or its parameters will be
         # maintained, and the model will be cleaned up.
-        self._params_refs = [weakref.ref(p) for p in parameters]
+        # self._params_refs = [weakref.ref(p) for p in parameters]
+        pass
 
     def _get_parameters(
         self,
         parameters: Optional[Iterable[torch.nn.Parameter]]
     ) -> Iterable[torch.nn.Parameter]:
-        if parameters is None:
-            parameters = [p() for p in self._params_refs]
-            if any(p is None for p in parameters):
-                raise ValueError(
-                    "(One of) the parameters with which this "
-                    "ExponentialMovingAverage "
-                    "was initialized no longer exists (was garbage collected);"
-                    " please either provide `parameters` explicitly or keep "
-                    "the model to which they belong from being garbage "
-                    "collected."
-                )
-            return parameters
-        else:
-            return parameters
+        # if parameters is None:
+        #     parameters = [p() for p in self._params_refs]
+        #     if any(p is None for p in parameters):
+        #         raise ValueError(
+        #             "(One of) the parameters with which this "
+        #             "ExponentialMovingAverage "
+        #             "was initialized no longer exists (was garbage collected);"
+        #             " please either provide `parameters` explicitly or keep "
+        #             "the model to which they belong from being garbage "
+        #             "collected."
+        #         )
+        #     return parameters
+        # else:
+        #     return parameters
+        return parameters
 
     def update(
         self,
